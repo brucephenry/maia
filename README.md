@@ -14,28 +14,33 @@ seperately via another utility like OAF.
 * Write results to a log file (e.g. maia_datetime.log) 
 
 # Known Issues
-* -
+* 
 
 # Examples
--
+*
 
 # Details
 * Ruby version
+
 ruby 2.6.4p104 or later
 
 * System dependencies
 
 
 * Configuration
+
 Needs access to the folder in which your relevant key files for OAuth are located.
 These key files can be generated using the OAuth Facilitator v2 (OAF2) found in the same directory as this README.
 
 * How to run the test suite
+
 LOL
 
 * Deployment instructions
+
 Copy it, run it.
 
 # Maia? WTF?
+
 Maia, daughter of the titan Atlas. Jira... Atlassian... get it?
 Sigh... never mind.

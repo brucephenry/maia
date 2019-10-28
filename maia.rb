@@ -20,7 +20,7 @@ line = ""
 begin
 	f =	File.open("#{keyfile_path}#{keyfile_root}.consumer")
 	f.each do |line|
-		consumer_key = consumer_key + line
+		consumer_key = consumer_key + line.chomp
 	end
 rescue
 	abort "Failure reading consumer file!\n#{$!}\n#{keyfile_path}#{keyfile_root}"
@@ -62,7 +62,7 @@ line = ""
 begin
 	f = File.open("#{keyfile_path}#{keyfile_root}.token")
 	f.each do |line|
-			token = token + line
+			token = token + line.chomp
 		end
 rescue
 	abort "Failure reading token file!\n#{$!}"
@@ -75,7 +75,7 @@ line = ""
 begin
 	f = File.open("#{keyfile_path}#{keyfile_root}.tokensecret")
 	f.each do |line|
-			tokensecret = tokensecret + line
+			tokensecret = tokensecret + line.chomp
 		end
 rescue
 	abort "Failure reading tokensecret file!\n#{$!}"
@@ -93,11 +93,14 @@ version_name = "EPC #{version_date} Test"
 #   create a release in Jira following the Appropriate naming convention 
 
 payload = {
+	description: "",
     name: version_name,
     archived: false,
     released: false,
     releaseDate: version_date,
-    projectId: 10091
+    userReleaseDate: "31/Oct/2019",
+    project: "EPC",
+    projectId: 10091 # You must lookup the projectId in Jira of your target project manually!
 }
 
 # This attaches the access token to a RestClient call
@@ -107,7 +110,7 @@ end
  
 	# Call Jira
 begin
-	puts RestClient.get("https://jira.disney.com/rest/api/2/project")
+	puts RestClient.post("https://jira.disney.com/rest/api/2/version", payload)
 rescue
 	puts "#{$!}"
 	puts "consumer: #{consumer_key}"
